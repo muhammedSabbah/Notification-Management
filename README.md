@@ -1,4 +1,4 @@
-# Notification-Management Service
+# Notification-Management
 
 # Functional Requirements:
 
