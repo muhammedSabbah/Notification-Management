@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.domain.Persistable;
 
-import java.util.List;
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Entity
@@ -31,8 +31,11 @@ public class BusinessUser implements Persistable<Long> {
     private String email;
     @Column(name = "address")
     private String address;
-    @OneToMany(mappedBy = "businessUser", fetch = FetchType.LAZY)
-    private List<Role> roles;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id")
+    private Role role;
+    @Column(name = "created_at")
+    private ZonedDateTime createdAt;
     @Transient
     private boolean isNew = true;
 
