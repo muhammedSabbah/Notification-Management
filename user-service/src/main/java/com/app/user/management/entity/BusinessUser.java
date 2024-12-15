@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.domain.Persistable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,8 +32,13 @@ public class BusinessUser implements Persistable<Long> {
     private String email;
     @Column(name = "address")
     private String address;
-    @OneToMany(mappedBy = "businessUser", fetch = FetchType.LAZY)
-    private List<Role> roles;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "business_user_role",
+            joinColumns = @JoinColumn(name = "business_user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<Role> roles = new ArrayList<>();
     @Transient
     private boolean isNew = true;
 

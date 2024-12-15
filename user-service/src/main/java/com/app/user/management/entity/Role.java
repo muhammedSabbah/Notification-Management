@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "role")
 @AllArgsConstructor
@@ -23,7 +25,6 @@ public class Role {
     private String description;
     @Column(name = "code")
     private String code;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "business_user_id")
-    private BusinessUser businessUser;
+    @ManyToMany(mappedBy = "roles")
+    private List<BusinessUser> users;
 }
