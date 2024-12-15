@@ -1,0 +1,11 @@
+# db.changelog-master.yml
+databaseChangeLog:
+  - changeSet:
+      id: create-user
+      author: mohamed.sabbah
+      changes:
+        - tagDatabase:
+            tag: V1.0.0
+        - sqlFile:
+            path: changes/V1.0.0_user_ddl.sql
+            relativeToChangelogFile: true
